@@ -1,6 +1,6 @@
-# Open-SuperAgent
+# AGRIagent
 
-AIアシスタント機能を備えたオープンソースチャットアプリケーション。Mastraエージェントと連携して、様々なタスクを自動化します。
+AIアシスタント機能を備えたオープンソースチャットアプリケーション。AGRIagentエージェントと連携して、様々なタスクを自動化します。
 
 ![アプリケーションのスクリーンショット](public/screenshot.png)
 
@@ -43,7 +43,7 @@ https://github.com/user-attachments/assets/a3d8a8e1-8d34-4a8b-8a3c-9e2a9b3e6d0f
 
 Dockerを使用すると、環境構築を簡単に行い、一貫した環境でアプリケーションを実行できます。
 
-### OpenSuperAgent コンテナ概要
+### AGRIagent コンテナ概要
 
 以下の3つのファイルで構成されたシンプルなDocker環境です：
 
@@ -57,7 +57,7 @@ Dockerを使用すると、環境構築を簡単に行い、一貫した環境�
 
 1. 上記3つのファイル（`Dockerfile`, `compose.yaml`, `.env`）を同じディレクトリに作成します。
 2. `.env` ファイル内の各種API-KEYなどを自身の情報に書き換えます。
-3. `.env` ファイル内の `GIT_REPO_URL` や `BRANCH_NAME` などを、必要に応じて編集します。※編集しない場合はOpenSuperAgentの最新版が起動します。
+3. `.env` ファイル内の `GIT_REPO_URL` や `BRANCH_NAME` などを、必要に応じて編集します。※編集しない場合はAGRIagentの最新版が起動します。
 4. ターミナルでそのディレクトリに移動し、以下のコマンドを実行します。
 
 ```bash
@@ -69,8 +69,8 @@ docker compose up --build -d
 # docker-compose up --build -d
 ```
 
-これで、OpenSuperAgentのソースが自動でクローン（取得）され、依存関係がインストールされたコンテナが起動します。
-ホストマシンの `3000` 番ポート（`.env` で指定）にアクセスすると、コンテナ内のOpenSuperAgentに接続できます。
+これで、AGRIagentのソースが自動でクローン（取得）され、依存関係がインストールされたコンテナが起動します。
+ホストマシンの `3000` 番ポート（`.env` で指定）にアクセスすると、コンテナ内のAGRIagentに接続できます。
 
 **アクセス**: http://localhost:3000/
 
@@ -87,14 +87,14 @@ docker-compose logs -f
 ## 主な機能
 
 - **AIチャット**: シンプルで使いやすいチャットインターフェース
-- **ツール実行**: Mastraエージェントを活用した各種タスクの自動化
-- **ツール実行の可視化**: Mastraエージェントのツール実行状況をリアルタイムに表示
+- **ツール実行**: AGRIagentエージェントを活用した各種タスクの自動化
+- **ツール実行の可視化**: AGRIagentエージェントのツール実行状況をリアルタイムに表示
 - **レスポンシブデザイン**: モバイルからデスクトップまで対応したUI
 
 ## 技術スタック
 
 - **フロントエンド**: Next.js 15、TailwindCSS、Vercel AI SDK
-- **バックエンド**: Mastraエージェントフレームワーク
+- **バックエンド**: AGRIagentエージェントフレームワーク
 - **音声生成**: MiniMax T2A Large v2 API
 - **デプロイ**: Vercel
 
@@ -152,14 +152,14 @@ NODE_ENV=development
 ### 前提条件
 
 - Node.js v20以上
-- Mastraのローカル環境
+- AGRIagentのローカル環境
 
 ### インストール
 
 ```bash
 # リポジトリをクローン
-git clone https://github.com/yourusername/open-superagent.git
-cd open-superagent
+git clone https://github.com/yourusername/agri-agent.git
+cd agri-agent
 
 # 依存パッケージをインストール
 npm install
@@ -174,16 +174,16 @@ cp .env.example .env  # .env.exampleがない場合は手動で.envファイル�
 npm run dev
 ```
 
-### Mastraサーバーのセットアップ
+### AGRIagentサーバーのセットアップ
 
-1. Mastraサーバーを別のターミナルで起動:
+1. AGRIagentサーバーを別のターミナルで起動:
 
 ```bash
-cd open-superagent
+cd agri-agent
 mastra dev
 ```
 
-2. Mastraエージェントのビルド:
+2. AGRIagentエージェントのビルド:
 
 ```bash
 mastra build
@@ -201,15 +201,15 @@ mastra build
 
 このプロジェクトは**二層ライセンス構造**を採用しています：
 
-### 1. Open-SuperAgent独自コード
+### 1. AGRIagent独自コード
 - **ライセンス**: MIT License with Commercial Use Restrictions
 - **商用利用**: AI Freak SummitまたはAIで遊ぼうコミュニティのメンバーのみ可能
 - **個人利用**: 誰でも可能（非商用・教育目的）
 
-### 2. Mastraフレームワーク部分
+### 2. AGRIagentフレームワーク部分
 - **ライセンス**: Elastic License 2.0 (ELv2)
 - **重要な制限事項**:
-  - ❌ **Managed Service禁止**: Mastra機能をSaaSとして第三者に提供することはできません
+  - ❌ **Managed Service禁止**: AGRIagent機能をSaaSとして第三者に提供することはできません
   - ❌ **ライセンス保護の改変禁止**: ライセンスキー機能を無効化できません
   - ❌ **著作権表示の削除禁止**: ライセンス表示を削除・改変できません
 
@@ -220,8 +220,8 @@ mastra build
 - 自社製品への組み込み（コミュニティメンバーの場合）
 
 ### 禁止されているケース ❌
-- Open-SuperAgentをWebサービスとしてホスティングし、他者に提供
-- Mastraのライセンス表示を削除しての再配布
+- AGRIagentをWebサービスとしてホスティングし、他者に提供
+- AGRIagentのライセンス表示を削除しての再配布
 - コミュニティ非メンバーによる商用利用
 
 詳細は[LICENSE](./LICENSE)および[NOTICE](./NOTICE)ファイルをご確認ください。

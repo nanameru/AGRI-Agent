@@ -19,6 +19,7 @@ import {
   Users,
   Image,
   Lightbulb,
+  Aperture,
 } from "lucide-react"
 
 import { NavDocuments } from "@/components/nav-documents"
@@ -101,7 +102,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             >
               <a href="/">
                 <ArrowUpCircle className="h-5 w-5" />
-                <span className="text-base font-semibold">Open-SuperAgent</span>
+                <span className="text-base font-semibold">AGRIagent</span>
               </a>
             </SidebarMenuButton>
           </SidebarMenuItem>

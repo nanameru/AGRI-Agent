@@ -4,6 +4,7 @@ import { Tweet } from 'react-tweet';
 import { AppSidebar } from '@/components/app-sidebar';
 import { SidebarProvider, SidebarInset } from '@/components/ui/sidebar';
 import { Twitter } from 'lucide-react';
+import { PageHeader, PageHeaderHeading } from "@/components/ui/page-header"
 
 const tweetIds = [
   "1933834880951206092",
@@ -33,6 +34,9 @@ export default function UsecasesPage() {
       <SidebarInset>
         <div className="min-h-screen bg-background">
           <div className="container mx-auto px-4 py-8">
+            <PageHeader>
+              <PageHeaderHeading>ユースケース</PageHeaderHeading>
+            </PageHeader>
             <div className="mb-12 text-center">
               <div className="inline-flex items-center justify-center p-3 mb-4 bg-muted rounded-full border">
                   <Twitter className="h-7 w-7 text-foreground" />
@@ -41,7 +45,7 @@ export default function UsecasesPage() {
                 活用事例
               </h1>
               <p className="mt-3 text-lg text-muted-foreground">
-                Open-SuperAgentが実際に活用されている事例をご紹介します。
+                AGRIagentが実際に活用されている事例をご紹介します。
               </p>
             </div>
 

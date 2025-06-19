@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ModelProvider } from "./components/ModelContext";
 import dynamic from "next/dynamic";
+import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 // Conditionally import Stagewise toolbar only in development
 const ClientStagewiseToolbar = dynamic(
@@ -20,8 +22,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Open-SuperAgent",
-  description: "Open-SuperAgent - An open-source AI assistant",
+  title: "AGRIagent",
+  description: "AGRIagent - An open-source AI assistant",
 };
 
 export default function RootLayout({

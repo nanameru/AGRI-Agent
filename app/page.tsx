@@ -619,7 +619,7 @@ export default function AppPage() {
                   {combinedMessages.length === 0 && !isLoading && !error && (
                     <div className="flex flex-col items-center justify-center">
                       <div className="text-center space-y-4">
-                        <h1 className="text-3xl font-normal text-gray-800">Open-SuperAgent</h1>
+                        <h1 className="text-3xl font-normal text-gray-800">AGRIagent</h1>
                       </div>
                     </div>
                   )}

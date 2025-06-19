@@ -62,11 +62,20 @@ export const mastra = new Mastra({
       : "file:../memory.db",   // Local: プロジェクトルート/memory.db
   }),
   logger: createLogger({
-    name: 'Mastra',
+    name: 'AGRIagent',
     level: 'info',
   }),
   server: {
     timeout: 300000,
     port: 4111,
   },
+  memory: {
+    storage: new InLocalStorage(),
+  },
+  llm: {
+    provider: 'openai',
+    model: process.env.OPENAI_MODEL_ID,
+  },
+  name: 'AGRIagent',
+  description: 'This is the core of the agentic application, managing tools, memory, and model interactions.',
 });
