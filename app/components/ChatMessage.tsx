@@ -1362,14 +1362,14 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({
             href={url}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 mx-1 px-2.5 py-1 text-xs font-medium bg-blue-100 text-blue-700 border border-blue-200 rounded-md hover:bg-blue-200 hover:text-blue-800 transition-colors no-underline"
+            className="inline-flex items-center gap-1 mx-1 px-2.5 py-1 text-xs font-medium bg-blue-100 text-blue-700 border border-blue-200 rounded-md hover:bg-blue-200 hover:text-blue-800 transition-colors no-underline break-all"
             style={{
               textDecoration: 'none',
               verticalAlign: 'middle',
             }}
           >
             <ExternalLink className="h-3 w-3 shrink-0" />
-            <span className="truncate" style={{ maxWidth: '200px' }}>{linkText}</span>
+            <span>{linkText}</span>
           </a>
         );
       } else {
