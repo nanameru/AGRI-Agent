@@ -21,6 +21,7 @@ import {
   Lightbulb,
   Aperture,
 } from "lucide-react"
+import { cn } from "@/lib/utils"
 
 import { NavDocuments } from "@/components/nav-documents"
 import { NavMain } from "@/components/nav-main"
@@ -90,9 +91,9 @@ const data = {
   ],
 }
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+export function AppSidebar({ className }: React.ComponentProps<"div">) {
   return (
-    <Sidebar {...props}>
+    <div className={cn("flex h-full flex-col", className)}>
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
@@ -116,6 +117,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarFooter>
         <NavUser user={data.user} />
       </SidebarFooter>
-    </Sidebar>
+    </div>
   )
 } 
