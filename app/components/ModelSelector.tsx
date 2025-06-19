@@ -10,25 +10,24 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-type ModelProvider = 'openai' | 'claude' | 'gemini';
+type ModelProvider = 'openai' | 'claude' | 'gemini' | 'bedrock';
 
 interface Model {
   id: string;
   provider: ModelProvider;
+  displayProvider?: ModelProvider;
   name: string;
   displayName: string;
 }
 
 const models: Model[] = [
-  { id: 'gpt-4.1', provider: 'openai', name: 'gpt-4.1', displayName: 'GPT-4.1' },
-  { id: 'o3-2025-04-16', provider: 'openai', name: 'o3-2025-04-16', displayName: 'o3' },
-  { id: 'o3-pro-2025-06-10', provider: 'openai', name: 'o3-pro-2025-06-10', displayName: 'o3 Pro' },
-  { id: 'o4-mini-2025-04-16', provider: 'openai', name: 'o4-mini-2025-04-16', displayName: 'o4-mini' },
-  { id: 'claude-opus-4-20250514', provider: 'claude', name: 'claude-opus-4-20250514', displayName: 'Claude Opus 4' },
-  { id: 'claude-sonnet-4-20250514', provider: 'claude', name: 'claude-sonnet-4-20250514', displayName: 'Claude Sonnet 4' },
-  { id: 'gemini-2.5-flash', provider: 'gemini', name: 'gemini-2.5-flash', displayName: 'Gemini 2.5 Flash' },
-  { id: 'gemini-2.5-flash-lite', provider: 'gemini', name: 'gemini-2.5-flash-lite-preview-06-17', displayName: 'Gemini 2.5 Flash Lite' },
-  { id: 'gemini-2.5-pro', provider: 'gemini', name: 'gemini-2.5-pro', displayName: 'Gemini 2.5 Pro' },
+  { 
+    id: 'claude-opus-4-20250514', 
+    provider: 'claude', 
+    displayProvider: 'bedrock',
+    name: 'claude-opus-4-20250514', 
+    displayName: 'claude 4 (amazon bedrock)' 
+  },
 ];
 
 const providerConfig = {
@@ -47,12 +46,17 @@ const providerConfig = {
     color: 'text-blue-700',
     badgeColor: 'bg-blue-100 text-blue-800 border-blue-200'
   },
+  bedrock: {
+    label: 'Bedrock',
+    color: 'text-purple-700',
+    badgeColor: 'bg-purple-100 text-purple-800 border-purple-200'
+  }
 };
 
 export const ModelSelector = () => {
   const { currentModel, setCurrentModel } = useModel();
 
-  const selectedModel = models.find(m => m.name === currentModel.modelName) || models[5];
+  const selectedModel = models.find(m => m.name === currentModel.modelName) || models[0];
 
   const handleModelChange = async (modelId: string) => {
     const model = models.find(m => m.id === modelId);
@@ -79,14 +83,16 @@ export const ModelSelector = () => {
       console.error('Failed to update model:', error);
     }
   };
+  
+  const displayProvider = selectedModel.displayProvider || selectedModel.provider;
 
   return (
     <Select value={selectedModel.id} onValueChange={handleModelChange}>
       <SelectTrigger className="w-[280px] h-9">
         <SelectValue>
           <div className="flex items-center gap-2">
-            <span className={`inline-flex items-center px-2 py-0.5 rounded-md text-xs font-medium border ${providerConfig[selectedModel.provider].badgeColor}`}>
-              {providerConfig[selectedModel.provider].label}
+            <span className={`inline-flex items-center px-2 py-0.5 rounded-md text-xs font-medium border ${providerConfig[displayProvider].badgeColor}`}>
+              {providerConfig[displayProvider].label}
             </span>
             <span className="text-sm font-medium">{selectedModel.displayName}</span>
           </div>
@@ -95,8 +101,9 @@ export const ModelSelector = () => {
       <SelectContent>
         {Object.entries(
           models.reduce((acc, model) => {
-            if (!acc[model.provider]) acc[model.provider] = [];
-            acc[model.provider].push(model);
+            const key = model.displayProvider || model.provider;
+            if (!acc[key]) acc[key] = [];
+            acc[key].push(model);
             return acc;
           }, {} as Record<ModelProvider, Model[]>)
         ).map(([provider, providerModels]) => (

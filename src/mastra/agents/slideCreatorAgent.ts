@@ -2,6 +2,7 @@ import { Agent } from '@mastra/core/agent';
 import { google } from '@ai-sdk/google'; // Use Google Gemini
 import { openai } from '@ai-sdk/openai'; // Import OpenAI
 import { anthropic } from '@ai-sdk/anthropic'; // Import Anthropic
+import { bedrock } from '@ai-sdk/amazon-bedrock'; // Import Bedrock
 import { 
   htmlSlideTool, 
   presentationPreviewTool,
@@ -51,6 +52,8 @@ export function createModel(provider: string, modelName: string) {
       return anthropic(modelName);
     case 'gemini':
       return google(modelName);
+    case 'bedrock':
+      return bedrock(modelName);
     default:
       throw new Error(`Unsupported provider: ${provider}`);
   }
